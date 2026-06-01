@@ -390,7 +390,7 @@ function executeSoundCommand(soundName) {
 function executeCheck(args) {
     if (!args || args.trim() === "") {
         addOutput("Usage: check &lt;id&gt;", 'error');
-        addOutput("Example: check O1244B53F93FFBF235E222", 'info');
+        addOutput("Example: check A0011000000NF000000000", 'info');
         return;
     }
     

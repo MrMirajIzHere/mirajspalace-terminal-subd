@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Cache-control" content="no-cache">
+    <meta http-equiv="Clear-Site-Data" content="cache">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Mainframe</title>
+    <link href="favicon.png" rel="icon" type="image/png" />
+    
+    <style>
+        @font-face {
+            font-family: IBM;
+            src: url('IBM_EGA.woff'); 
+            font-smooth: never;
+        }
+        
+        /* Better input handling */
+        .txt-input {
+            background: transparent;
+            border: none;
+            outline: none;
+            flex: 1;
+            padding: 0;
+            margin: 0;
+        }
+        
+        #txt {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .path {
+            margin: 0;
+        }
+    </style>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="art" style="font-size: 28px; font-family: IBM">
+        <span style="color: #00FF00; background: #000000;">
+___  ____           _ _     
+|  \/  (_)         (_| )    
+| .  . |_ _ __ __ _ _|/ ___ 
+| |\/| | | '__/ _` | | / __|
+| |  | | | | | (_| | | \__ \
+\_|__|_/_|_|  \__,_| | |___/
+| ___ \   | |     _/ |      
+| |_/ /_ _| | __ |__/__ ___ 
+|  __/ _` | |/ _` |/ __/ _ \
+| | | (_| | | (_| | (_|  __/
+\_|  \__,_|_|\__,_|\___\___|
+Mainframe interface // [Version: v17.1.0012]
+        </span>
+    </div>
+    
+    <div class="content" style="font-size: 28px; font-family: IBM">&nbsp;</div>
+    
+    <div id="txt">
+        <p class="path" style="font-size: 28px; font-family: IBM">@&gt;</p>
+        <input autofocus class="txt-input" style="font-size: 28px; font-family: IBM" type="text" />
+    </div>
+    
+    <div>&nbsp;</div>
+	
+    <script src="hexConv.js"></script>
+	<script src="database.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

@@ -443,6 +443,22 @@ function executeCheck(args) {
         }
     }
     
+    let designation = "UNKNOWN";
+    let recordFound = false;
+    
+    if (window.lookupRecord) {
+        const record = window.lookupRecord(fullId);
+        if (record.found) {
+            recordFound = true;
+            designation = record.designation;
+        }
+    }
+    
+    if (!recordFound) {
+        addOutput(`Record ${formattedId} not found in database`, 'error');
+        return;
+    }
+    
     let rankSymbols = '';
     for (let i = 0; i < rankCode.length; i++) {
         rankSymbols += SYMBOL_MAP[rankCode[i].toLowerCase()];
@@ -453,23 +469,15 @@ function executeCheck(args) {
         serialSymbols += SYMBOL_MAP[serialCode[i].toLowerCase()];
     }
     
-    let designation = "UNKNOWN";
-    if (window.lookupRecord) {
-        const record = window.lookupRecord(fullId);
-        if (record.found) {
-            designation = record.designation;
+    let division = "???";
+    if (window.HexConv) {
+        try {
+            const decodedDiv = window.HexConv.decode(stationCode, hexColor2);
+            division = window.HexConv.formatDiv(decodedDiv);
+        } catch(e) {
+            division = "ERR";
         }
     }
-    
-let division = "???";
-if (window.HexConv) {
-    try {
-        const decodedDiv = window.HexConv.decode(stationCode, hexColor2);
-        division = window.HexConv.formatDiv(decodedDiv);
-    } catch(e) {
-        division = "ERR";
-    }
-}
     
     function getContrastColor(hexColor) {
         if (!window.HexConv || !window.HexConv.getLuminance) {

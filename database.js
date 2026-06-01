@@ -1,6 +1,9 @@
 const RECORDS_DB = {
     "O1244B53F93FFBF235E222": {
         designation: "FADING FANTOM"
+    },
+	"A0011000000NF000000000": {
+        designation: "NOT FOUND"
     }/*,
 	"O1244B53F93FFBF235E222": {
         designation: "FADING FANTOM"

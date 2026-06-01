@@ -230,14 +230,14 @@ function executeCommand(command) {
         return;
     }
     
-    if(command.startsWith('encode ')) {
-        const args = command.substring(7);
+    if(command === 'encode' || command.startsWith('encode ')) {
+        const args = command === 'encode' ? '' : command.substring(7);
         executeEncode(args);
         return;
     }
     
-    if(command.startsWith('decode ')) {
-        const args = command.substring(7);
+    if(command === 'decode' || command.startsWith('decode ')) {
+        const args = command === 'decode' ? '' : command.substring(7);
         executeDecode(args);
         return;
     }
@@ -616,7 +616,15 @@ function deriveStatusFromHex(hexColor, division) {
 }
 
 function executeEncode(commandArgs) {
-    const DIVISION_RANGE = { min: 0, max: 99 };
+	const parts = commandArgs.trim().split(/\s+/).filter(arg => arg.length > 0);
+    if (parts.length < 1) {
+        addOutput("Usage: encode &lt;station&gt; [division]", 'error');
+		addOutput("Example: encode A 0", 'info');
+		addOutput("Example: encode A", 'info');
+        return;
+    }
+	
+	const DIVISION_RANGE = { min: 0, max: 99 };
     const STATUS_COLORS = {
         OK: '#00FF00',
         WARN: '#FFFF00',
@@ -693,12 +701,6 @@ function executeEncode(commandArgs) {
         `;
     };
     
-    const parts = commandArgs.trim().split(/\s+/);
-    if (parts.length < 1) {
-        addOutput("Usage: encode &lt;station&gt; [division]", 'error');
-        return;
-    }
-    
     const station = parts[0];
     const division = parts[1] !== undefined ? parseInt(parts[1]) : null;
     
@@ -760,10 +762,10 @@ function executeEncode(commandArgs) {
 }
 
 function executeDecode(commandArgs) {
-    const parts = commandArgs.trim().split(/\s+/);
+    const parts = commandArgs.trim().split(/\s+/).filter(arg => arg.length > 0);
     if(parts.length < 2) {
         addOutput("Usage: decode &lt;station&gt; &lt;hex&gt;", 'error');
-        addOutput("Example: decode Omega BF23AD", 'info');
+        addOutput("Example: decode A 3E479A", 'info');
         return;
     }
     

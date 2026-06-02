@@ -73,5 +73,25 @@ Mainframe interface // [Version: v17.1.0012]
     <script src="hexConv.js"></script>
 	<script src="database.js"></script>
     <script src="main.js"></script>
+	<script>
+	function autoRunFromUrl() {
+  	 const urlParams = new URLSearchParams(window.location.search);
+   	 const idParam = urlParams.get('id');
+   	 
+   	 if (idParam && idParam.trim() !== '') {
+ 	       setTimeout(() => {
+ 	           const fullId = idParam.trim().toUpperCase();
+ 	           addOutput(`@>  check ${fullId}`, 'command-line');
+ 	           executeCommand(`check ${fullId}`);
+ 	       }, 100);
+	    }
+	}
+
+	if (document.readyState === 'loading') {
+  	  document.addEventListener('DOMContentLoaded', autoRunFromUrl);
+	} else {
+    	autoRunFromUrl();
+	}
+	</script>
 </body>
 </html>

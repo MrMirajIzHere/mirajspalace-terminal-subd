@@ -58,6 +58,12 @@ const COMMANDS = {
         usage: "[sound]",
         execute: () => showSoundList()
     },
+	
+	stations: {
+        description: "showStations()",
+        usage: "",
+        execute: () => showStations()
+	},
     
     encode: {
         description: "Encode division to HEX",
@@ -70,10 +76,10 @@ const COMMANDS = {
         execute: (args) => executeDecode(args)
     },
 	
-	stations: {
-        description: "showStations()",
-        usage: "",
-        execute: () => showStations()
+	symbol: {
+    description: "showSymbolMap()",
+    usage: "",
+    execute: () => showSymbolMap()
 	},
 	
 	check: {
@@ -158,8 +164,39 @@ const USAGE_LEGEND = {
 };
 
 const SYMBOL_MAP = {
-    '0': '-', '1': '|', '2': '\\', '3': '(', '4': '<', '5': '{', '6': '[', '7': ']',
-    '8': '}', '9': ')', 'a': '>', 'b': '/', 'c': ':', 'd': '+', 'e': '~'
+    '0': '-', 
+	'1': '|', 
+	'2': '\\', 
+	'3': '(', 
+	'4': '<', 
+	'5': '{', 
+	'6': '[', 
+	'7': ']',
+    '8': '}', 
+	'9': '>', 
+	'a': ')', 
+	'b': '/', 
+	'c': ':', 
+	'd': '+', 
+	'e': '~'
+};
+
+const SYMBOL_COLOR_MAP = {
+	'-': 'D3B45D', 
+	'|': 'D3A554', 
+	'\\': 'D38647', 
+	'(': 'CC4790', 
+	'<': 'B53F93', 
+	'{': '6C3E91', 
+	'[': '2E2689', 
+	']': '265389',
+    '}': '336D8C', 
+	'>': '4C97B5', 
+	')': '23AFA4', 
+	'/': '60A852', 
+	':': '4B8938', 
+	'+': 'AED123', 
+	'~': '9F37D1'
 };
 
 const REVERSE_SYMBOL_MAP = Object.fromEntries(
@@ -348,6 +385,23 @@ function showStations() {
     addOutput(stationsList);
 }
 
+function showSymbolMap() {
+    let symbolList = '<div style="font-family: IBM; font-size: 28px; color: #7F7F00">';
+    symbolList += '<span style="color: #FFFF00">Symbol Map:</span><br><br>';
+
+    const sortedEntries = Object.entries(SYMBOL_MAP).sort((a, b) => a[0].localeCompare(b[0]));
+
+    for (const [code, symbol] of sortedEntries) {
+        const colorCode = SYMBOL_COLOR_MAP[symbol] || '000000';
+        const backgroundColor = `#${colorCode}`;
+        
+        symbolList += `<span style="color: #C0C0C0;">${code}</span> -> <span style="background-color: ${backgroundColor}; color: #FFFFFF; padding: 0 6px;">${symbol}</span><br>`;
+    }
+
+    symbolList += '</div>';
+    addOutput(symbolList);
+}
+
 function clearTerminal() {
     content.innerHTML = '&nbsp;';
     scrollToBottom();
@@ -371,6 +425,7 @@ function showSoundList() {
     }
     soundList += '</div>';
     addOutput(soundList);
+		addOutput(`<br>Usage: sound [sound]`, 'info');
 }
 
 function executeSoundCommand(soundName) {

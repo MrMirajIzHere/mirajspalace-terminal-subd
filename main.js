@@ -395,7 +395,7 @@ function showSymbolMap() {
         const colorCode = SYMBOL_COLOR_MAP[symbol] || '000000';
         const backgroundColor = `#${colorCode}`;
         
-        symbolList += `<span style="color: #C0C0C0;">${code}</span> -> <span style="background-color: ${backgroundColor}; color: #FFFFFF; padding: 0 6px;">${symbol}</span><br>`;
+        symbolList += `<span style="color: #C0C0C0;">${code}</span> -> <span style="background-color: ${backgroundColor}; color: #FFFFFF; padding: 0 6px;">${symbol}</span><span style="color: ${backgroundColor}"> ${backgroundColor}</span><br>`;
     }
 
     symbolList += '</div>';

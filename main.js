@@ -574,7 +574,6 @@ const GREEK_LETTERS = {
     'M': 'Mu',
     'N': 'Nu',
     'X': 'Xi',
-    'O': 'Omega',
     'OM': 'Omicron',
     'P': 'Pi',
     'R': 'Rho',
@@ -583,7 +582,8 @@ const GREEK_LETTERS = {
     'U': 'Upsilon',
     'PH': 'Phi',
     'CH': 'Chi',
-    'PS': 'Psi'
+    'PS': 'Psi',
+    'O': 'Omega'
 };
 
 const GREEK_NAMES = {};

@@ -15,9 +15,9 @@ body {
     background: #000000;
     padding: 15px 20px;
     height: 100vh;
+	image-rendering: pixelated;
 }
 
-/* Logo */
 .art {
     position: relative;
     font-family: monospace;
@@ -27,22 +27,23 @@ body {
     font-size: 1.5em;
 }
 
-/* Make content selectable */
 .content, .art {
     user-select: text;
     -webkit-user-select: text;
     cursor: text;
 }
 
-/* The input */
 #txt {
     display: flex;
+	align-items: center;
     padding: 10px;
 }
 
 .txt-input {
+	margin: 0;
     margin-top: 1px;
     margin-left: 7px;
+	padding: 0;
     outline: none;
     border: none;
     background-color: transparent;
@@ -53,12 +54,14 @@ body {
     flex: 1;
 }
 
-/* Visual feedback for selectable areas on hover */
+.path {
+    margin: 0;
+}
+
 .content:hover, .art:hover {
     cursor: text;
 }
 
-/* Links */
 a {
     text-decoration: none;
     color: #007F7F;
@@ -69,7 +72,6 @@ a:hover {
     color: #00FF00;
 }
 
-/* Responsive */
 @media (max-width: 767px) {
     body {
         padding: 10px;

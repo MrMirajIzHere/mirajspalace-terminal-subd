@@ -31,9 +31,9 @@ const COMMANDS = {
         execute: () => showDateTime()
     },
     dir: {
-        description: "redirectTo('dir')",
+        description: "displayDirectory()",
         usage: "",
-        execute: () => redirectTo("dir.html")
+        execute: () => displayDirectory()
     },
     exit: {
         description: "redirectTo('index')",
@@ -52,6 +52,12 @@ const COMMANDS = {
         execute: () => addArtOutput('dunderhead'),
         hideFromHelp: true
     },
+	
+	project: {
+    description: "listProjects() || showProject()",
+    usage: "[project]",
+    execute: (args) => executeProject(args)
+	},
     
     sound: {
         description: "showSoundList() || playSound()",
@@ -163,6 +169,20 @@ const USAGE_LEGEND = {
     misc: '(info)'
 };
 
+const PROJECTS = {
+    "drum_machine": {
+        description: `<div style="color: #00FF00">
+		<img src="images/drum_3d.png" height=800px width=auto/><br>
+		Drum machine:<br>
+		Circuits originally designed by Moritz Klein,<br>
+		and simplified to remove cv functionality by me.<br>
+		PCB design is by me(it's very obvious when you look at them),<br>
+		they are designed to stack on top of each other, forming<br>
+		a cube of a drum machine, that is easy to handle/transport.<br>
+		</div><br>`
+    }
+};
+
 const SYMBOL_MAP = {
     '0': '-', 
 	'1': '|', 
@@ -202,6 +222,38 @@ const SYMBOL_COLOR_MAP = {
 const REVERSE_SYMBOL_MAP = Object.fromEntries(
     Object.entries(SYMBOL_MAP).map(([k, v]) => [v, k])
 );
+
+const GREEK_LETTERS = {
+    'A': 'Alpha',
+    'B': 'Beta',
+    'G': 'Gamma',
+    'D': 'Delta',
+    'E': 'Epsilon',
+    'Z': 'Zeta',
+    'H': 'Eta',
+    'TH': 'Theta',
+    'I': 'Iota',
+    'K': 'Kappa',
+    'L': 'Lambda',
+    'M': 'Mu',
+    'N': 'Nu',
+    'X': 'Xi',
+    'OM': 'Omicron',
+    'P': 'Pi',
+    'R': 'Rho',
+    'S': 'Sigma',
+    'T': 'Tau',
+    'U': 'Upsilon',
+    'PH': 'Phi',
+    'CH': 'Chi',
+    'PS': 'Psi',
+    'O': 'Omega'
+};
+
+const GREEK_NAMES = {};
+for (const [code, name] of Object.entries(GREEK_LETTERS)) {
+    GREEK_NAMES[name.toUpperCase()] = code;
+}
 
 let input = document.querySelector('.txt-input');
 let content = document.querySelector('.content');
@@ -266,6 +318,16 @@ function executeCommand(command) {
         }
         return;
     }
+	
+	if(command.startsWith('project ')) {
+    const projectName = command.substring(8);
+    if(projectName.trim() === "") {
+        listProjects();
+    } else {
+        showProject(projectName.trim().toLowerCase());
+    }
+    return;
+	}
     
     if(command === 'encode' || command.startsWith('encode ')) {
         const args = command === 'encode' ? '' : command.substring(7);
@@ -402,8 +464,39 @@ function showSymbolMap() {
     addOutput(symbolList);
 }
 
+function listProjects() {
+    let projectsList = '<div style="font-family: IBM; font-size: 28px; color: #7F7F00">';
+    projectsList += '<span style="color: #FFFF00">Available Projects:</span><br>';
+    
+    for (const [project] of Object.entries(PROJECTS)) {
+        projectsList += `<span style="color: #7F7F00">${project}</span><br>`;
+    }
+	
+    projectsList += '</div>';
+    addOutput(projectsList);
+		addOutput(`<br>Usage: project [project]`, 'info');
+}
+
+function showProject(projectKey) {
+    const project = PROJECTS[projectKey];
+    if (project) {
+        addOutput(`<div style="font-family: IBM; font-size: 28px;">${project.description}</div>`);
+    } else {
+        addOutput(`Project "${projectKey}" not found.`, 'error');
+    }
+}
+
+function executeProject(args) {
+    if (!args || args.trim() === "") {
+        listProjects();
+    } else {
+        showProject(args.trim().toLowerCase());
+    }
+}
+
 function clearTerminal() {
     content.innerHTML = '&nbsp;';
+	executeCommand('logo');
     scrollToBottom();
 }
 
@@ -411,6 +504,14 @@ function showDateTime() {
     const date = new Date();
     const dateTime = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
     addOutput(`Date // time:<div style="color: #007F7F">${dateTime}</div>`);
+}
+
+function displayDirectory() {
+    if (typeof DIRECTORY_CONTENT !== 'undefined') {
+        addOutput(DIRECTORY_CONTENT, 'default');
+    } else {
+        addOutput('Directory listing not found. Make sure dir.js is loaded.', 'error');
+    }
 }
 
 function redirectTo(url) {
@@ -557,38 +658,6 @@ function executeCheck(args) {
 </div>`;
     
     addOutput(output);
-}
-
-const GREEK_LETTERS = {
-    'A': 'Alpha',
-    'B': 'Beta',
-    'G': 'Gamma',
-    'D': 'Delta',
-    'E': 'Epsilon',
-    'Z': 'Zeta',
-    'H': 'Eta',
-    'TH': 'Theta',
-    'I': 'Iota',
-    'K': 'Kappa',
-    'L': 'Lambda',
-    'M': 'Mu',
-    'N': 'Nu',
-    'X': 'Xi',
-    'OM': 'Omicron',
-    'P': 'Pi',
-    'R': 'Rho',
-    'S': 'Sigma',
-    'T': 'Tau',
-    'U': 'Upsilon',
-    'PH': 'Phi',
-    'CH': 'Chi',
-    'PS': 'Psi',
-    'O': 'Omega'
-};
-
-const GREEK_NAMES = {};
-for (const [code, name] of Object.entries(GREEK_LETTERS)) {
-    GREEK_NAMES[name.toUpperCase()] = code;
 }
 
 function getGreekName(station) {

@@ -1,37 +1,307 @@
-let input = document.querySelector('.txt-input');
-let content = document.querySelector('.content');
-let clear = document.getElementsByClassName('.clear');
+const DIRECTORY_CONTENT = `<pre style="font-size: 28px; font-family: IBM">
+<span style="color: #FF0000">NOT A REAL TIME DIRECTORY
+snapshot of 2/jun/2026
+(AKA probably outdated)</span>
+Folder PATH listing for volume htdoc
+Volume serial number is xxxx-xxxx
+C:.
+├───mainframe
+│   │   database.js
+│   │   dir.js
+│   │   favicon.png
+│   │   hexConv.js
+│   │   IBM_EGA.woff
+│   │   index.html
+│   │   loading.js
+│   │   main.js
+│   │   style.css
+│   │
+│   ├───images
+│   │       drum_3d.png
+│   │
+│   └───sound
+│           burnout demo.flac
+│           pc_att_demo.flac
+│           project_5_demo.mp3
+│           system_startup.mp3
+│
+└───mirajspalace-main
+    │   404.html
+    │   404.md
+    │   allofmylinks.htm
+    │   blogboard.htm
+    │   CNAME
+    │   comments.htm
+    │   controlPanel.htm
+    │   descord.htm
+    │   discordtest.htm
+    │   draggable.css
+    │   draggable.js
+    │   draggablenot.css
+    │   funstuff.htm
+    │   gdlinkconverter.htm
+    │   GOBACK.htm
+    │   IBM_EGA.TTF
+    │   IBM_EGA.woff
+    │   index.htm
+    │   indexold.htm
+    │   me.htm
+    │   mold.js
+    │   music.htm
+    │   mystuff.htm
+    │   notindex.html
+    │   nuh_uh.htm
+    │   openWindow.js
+    │   Px437_DOS-V_re_JPN12.ttf
+    │   Px437_EagleSpCGA_Alt2.ttf
+    │   Px437_IBM_Conv.ttf
+    │   Px437_IBM_XGA-AI_12x20.ttf
+    │   Px437_Sharp_PC3K.ttf
+    │   PxPlus_HP_100LX_16x12.ttf
+    │   really.htm
+    │   tenorRandomGifs.js
+    │   test.html
+    │   text.htm
+    │   thingsido.htm
+    │   waiT_WHAT.htm
+    │   web.config
+    │   whyemail.htm
+    │   ___.htm
+    │
+    ├───blog
+    │   │   !example.htm
+    │   │   10oct2024_19_36.htm
+    │   │   11apr_2025_17_27.htm
+    │   │   11oct2025_3_41.htm
+    │   │   12aug2024_1_50.htm
+    │   │   13feb2024_22_40.htm
+    │   │   13jan2024_0_07.htm
+    │   │   13jan2024_19_46.htm
+    │   │   14mar2024_12_12.htm
+    │   │   14oct2024_16_36.htm
+    │   │   14sep2025_17_00.htm
+    │   │   15feb2024_19_24.htm
+    │   │   15oct2025_1_58.htm
+    │   │   16feb2024_13_22.htm
+    │   │   17aug2024_1_27.htm
+    │   │   17aug2024_1_38.htm
+    │   │   19nov2024_16_19.htm
+    │   │   19sep2024_17_58.htm
+    │   │   20dec2023_9_01.htm
+    │   │   20oct2024_15_34.htm
+    │   │   20sep2025_16_53.htm
+    │   │   21sep2024_23_45.htm
+    │   │   22apr2024_11_56.htm
+    │   │   22dec2023_15_37.htm
+    │   │   22dec2023_17_01.htm
+    │   │   22dec2023_17_58.htm
+    │   │   24dec2023_20_38.htm
+    │   │   24oct2024_19_59.htm
+    │   │   26dec2023_19_50.htm
+    │   │   27dec2023_19_39.htm
+    │   │   28dec2023_19_42.htm
+    │   │   28dec2023_8_55.htm
+    │   │   29jan2024_11_44.htm
+    │   │   29may2025_3_29.htm
+    │   │   2feb2024_20_54.htm
+    │   │   2oct2024_2_10.htm
+    │   │   30dec2023_20_02.htm
+    │   │   4sep2025_18_02.htm
+    │   │   5apr2024_21_53.htm
+    │   │   5apr2024_4_46.htm
+    │   │   6apr2024_5_38.htm
+    │   │   6jan2024_19_06.htm
+    │   │   8sep2025_18_37.htm
+    │   │   favicon1.png
+    │   │   test.htm
+    │   │
+    │   ├───blog_images
+    │   │   └───img
+    │   │           favicon1.png
+    │   │           icon1.gif
+    │   │           icon2.gif
+    │   │
+    │   └───images
+    │           favicon1.png
+    │           icon1.gif
+    │           icon2.gif
+    │
+    ├───circuitbreaker
+    │   │   draggable.css
+    │   │   draggable.js
+    │   │   favicon.png
+    │   │   guitar_small.png
+    │   │   guitar_small_demo.png
+    │   │   hiddable.js
+    │   │   index.htm
+    │   │   main.css
+    │   │   P1050300.png
+    │   │   P1050305.png
+    │   │   P1050306.png
+    │   │   Px437_DOS-V_re_JPN12.ttf
+    │   │   Px437_Sharp_PC3K.ttf
+    │   │
+    │   └───snd
+    │           mp_ui_bad.wav
+    │           mp_ui_good.wav
+    │           mp_ui_int.wav
+    │           mp_ui_int_x3.wav
+    │
+    ├───ErrorPages
+    │       401.htm
+    │       403.htm
+    │       404.html
+    │       405.htm
+    │       406.htm
+    │       412.htm
+    │       431.htm
+    │       500.htm
+    │       501.htm
+    │       502.htm
+    │
+    ├───gallery
+    │       gallery1.htm
+    │
+    ├───images
+    │   │   0033069530_100.png
+    │   │   0tetris.gif
+    │   │   2024034319.png
+    │   │   20ZBOOKS24022619.png
+    │   │   331c0b73fd7d23ee.png
+    │   │   5a8bisvupm581.gif
+    │   │   ahafurry.gif
+    │   │   animspace.gif
+    │   │   aseflag.gif
+    │   │   backlightening.gif
+    │   │   barraconstruction.gif
+    │   │   bar_gay_rainbow-small_flashing.gif
+    │   │   breaklink.gif
+    │   │   candle.gif
+    │   │   canon5G.png
+    │   │   coding.gif
+    │   │   comctl32_1_20482.png
+    │   │   comments_try_3.gif
+    │   │   construc_button.gif
+    │   │   crossButton.png
+    │   │   discord.gif
+    │   │   dsfolder_125.png
+    │   │   explode.gif
+    │   │   explosion.gif
+    │   │   favicon.ico
+    │   │   favicon.png
+    │   │   favicon1.png
+    │   │   faviconCon.png
+    │   │   fixLayButton.png
+    │   │   flashythingy.gif
+    │   │   forumsbutton.gif
+    │   │   gayflag.gif
+    │   │   glitchart.png
+    │   │   glitchart1.png
+    │   │   guitar3.gif
+    │   │   hat_static.png
+    │   │   kstr-kochstrasse.gif
+    │   │   liminality.gif
+    │   │   lisa_bez_lisy(raskaras).png
+    │   │   mailhere.gif
+    │   │   MAINFRAMEBUTTON.gif
+    │   │   minecraft.gif
+    │   │   MIRAJ.gif
+    │   │   mirajspalace 2.gif
+    │   │   mirajspalace.gif
+    │   │   mirajspalace.png
+    │   │   mirajspalaceEMBED.png
+    │   │   MIRAJ_BANNER.png
+    │   │   Miraj_s_Palace_Main_Page.png
+    │   │   Miraj_s_Palace_Main_PageINVERT.png
+    │   │   music.gif
+    │   │   musica4.gif
+    │   │   musicbutton.gif
+    │   │   newG.png
+    │   │   next89.gif
+    │   │   oldG.png
+    │   │   oldLayButton.png
+    │   │   palaceGIF.gif
+    │   │   partycake.gif
+    │   │   pentagram.gif
+    │   │   rainbowbigstarani.gif
+    │   │   randomlittleskrimblo.png
+    │   │   RjvjAtMEDyU.jpg
+    │   │   Sirena.gif
+    │   │   SPACEWAVE.gif
+    │   │   tetriscool.gif
+    │   │   TGLogo_old.png
+    │   │   things_i_dofin.gif
+    │   │   vines1long.png
+    │   │   vines2short.png
+    │   │   vines2tiny.png
+    │   │   vines2tinyLEAF.png
+    │   │   vines2tinyOVERLAY.png
+    │   │   wateringCan.png
+    │   │   wateringCanSMALL.png
+    │   │   wateringCanSMALLdragged.png
+    │   │   WoodPlanks.jpg
+    │   │   yourad.gif
+    │   │
+    │   ├───98
+    │   │       cdfview_8193.png
+    │   │       cdplayer_1_201.gif
+    │   │       gpedit_1_1.gif
+    │   │       iexpress_1_2201.gif
+    │   │       ImageHandler-17.png
+    │   │       paper_bad_replace_tree.png
+    │   │       phoneANIMgicx.gif
+    │   │       progman_1_123.gif
+    │   │       progman_1_129.gif
+    │   │       setupapi_1_105.gif
+    │   │       smtp_smtpsnap_9032.gif
+    │   │
+    │   ├───my gifs
+    │   │       poket_cam.gif
+    │   │       speaker_gif_model.gif
+    │   │
+    │   ├───othervines
+    │   │       vines1long.png
+    │   │       vines2short.png
+    │   │       vinesblogy.png
+    │   │       vinesPlaceholder.png
+    │   │
+    │   └───stuffs
+    │           acab.gif
+    │           anarchynow.gif
+    │           madewithtwopaws.gif
+    │           nowebp.gif
+    │
+    ├───secret
+    │       i can write weird things sometimes.png
+    │       secret.txt
+    │
+    ├───snd
+    │       mp_ui_bad.mp3
+    │       mp_ui_bad.wav
+    │       mp_ui_good.mp3
+    │       mp_ui_good.wav
+    │       mp_ui_int.mp3
+    │       mp_ui_int.wav
+    │       mp_ui_int_x3.mp3
+    │       mp_ui_int_x3.wav
+    │
+    ├───tetris
+    │       animspace.gif
+    │       backlightening.gif
+    │       barraconstruction.gif
+    │       PLAY .gif
+    │       tetris.htm
+    │       tetrisredirect.htm
+    │
+    └───title12234
+        │   title12234.html
+        │   waveform.png
+        │   waveform_c.png
+        │
+        └───contents
+                cover.png
+                PxPlus_IBM_EGA_8x14.ttf
+                title12234.mp3
 
-let todos = JSON.parse(localStorage.getItem('todos')) || [];
 
-let result;
-
-input.addEventListener('keydown', handleCommand);
-
-function handleCommand(event) {
-    if(event.key === 'Enter') {
-        const command = input.value.trim();
-        input.value = '';
-        content.innerHTML += `@>  ${command}<br>`;
-        executeCommand(command);
-    }
-}
-
-function executeCommand(command) {
-    switch (command) {
-		            //list of commands
-        case "help":
-            content.innerHTML += `<p style="font-size: 28px; font-family: IBM" >Available commands: <br></p>
-			<p style="color: #7F7F00">help, back</p>`;
-            break;
-					//redirect
-			case "back":
-            content.innerHTML += 
-            window.location.replace("index.html");
-			;
-            break;
-        default:
-            content.innerHTML += `<p style="color: #FF0000">Unknown command: <span style="text-decoration: underline;">${command}</span>, type "help" for command list.<br>`;
-    }
-}
-
+</pre>`;

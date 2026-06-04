@@ -12,55 +12,9 @@
     <link rel="stylesheet" href="style.css">
     <title>Mainframe</title>
     <link href="favicon.png" rel="icon" type="image/png" />
-    
-    <style>
-        @font-face {
-            font-family: IBM;
-            src: url('IBM_EGA.woff'); 
-            font-smooth: never;
-        }
-        
-        /* Better input handling */
-        .txt-input {
-            background: transparent;
-            border: none;
-            outline: none;
-            flex: 1;
-            padding: 0;
-            margin: 0;
-        }
-        
-        #txt {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .path {
-            margin: 0;
-        }
-    </style>
-    
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-    <div class="art" style="font-size: 28px; font-family: IBM">
-        <span style="color: #00FF00; background: #000000;">
-___  ____           _ _     
-|  \/  (_)         (_| )    
-| .  . |_ _ __ __ _ _|/ ___ 
-| |\/| | | '__/ _` | | / __|
-| |  | | | | | (_| | | \__ \
-\_|__|_/_|_|  \__,_| | |___/
-| ___ \   | |     _/ |      
-| |_/ /_ _| | __ |__/__ ___ 
-|  __/ _` | |/ _` |/ __/ _ \
-| | | (_| | | (_| | (_|  __/
-\_|  \__,_|_|\__,_|\___\___|
-Mainframe interface // [Version: v17.1.0012]
-        </span>
-    </div>
-    
     <div class="content" style="font-size: 28px; font-family: IBM">&nbsp;</div>
     
     <div id="txt">
@@ -70,28 +24,10 @@ Mainframe interface // [Version: v17.1.0012]
     
     <div>&nbsp;</div>
 	
-    <script src="hexConv.js?=v2"></script>
-	<script src="database.js?=v1"></script>
-    <script src="main.js?=v2"></script>
-	<script>
-	function autoRunFromUrl() {
-  	 const urlParams = new URLSearchParams(window.location.search);
-   	 const idParam = urlParams.get('id');
-   	 
-   	 if (idParam && idParam.trim() !== '') {
- 	       setTimeout(() => {
- 	           const fullId = idParam.trim().toUpperCase();
- 	           addOutput(`@>  check ${fullId}`, 'command-line');
- 	           executeCommand(`check ${fullId}`);
- 	       }, 100);
-	    }
-	}
-
-	if (document.readyState === 'loading') {
-  	  document.addEventListener('DOMContentLoaded', autoRunFromUrl);
-	} else {
-    	autoRunFromUrl();
-	}
-	</script>
+    <script src="hexConv.js"></script>
+	<script src="database.js"></script>
+    <script src="main.js"></script>
+	<script src="dir.js"></script>
+	<script src="loading.js"></script>
 </body>
 </html>

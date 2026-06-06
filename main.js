@@ -171,15 +171,38 @@ const USAGE_LEGEND = {
 
 const PROJECTS = {
     "drum_machine": {
-        description: `<div style="color: #00FF00">
-		<img src="images/drum_3d.png" height=800px width=auto/><br>
-		Drum machine:<br>
-		Circuits originally designed by Moritz Klein,<br>
-		and simplified to remove cv functionality by me.<br>
-		PCB design is by me(it's very obvious when you look at them),<br>
-		they are designed to stack on top of each other, forming<br>
-		a cube of a drum machine, that is easy to handle/transport.<br>
-		</div><br>`
+        description: `<div style="color: #00FF00"><pre>
+<img src="images/drum_3d.png" height=800px width=auto style="background-color: #000000"/>
+Drum machine:
+Circuits originally designed by Moritz Klein,
+and simplified to remove cv functionality by me.
+PCB design is by me(it's very obvious when you look at them),
+they are designed to stack on top of each other, forming
+a cube of a drum machine, that is easy to handle/transport.
+</pre></div><br>`
+    },
+	"circuit_breaker": {
+        description: `<div style="color: #00FF00"><pre>
+<img src="images/circuit_breaker_3d.png" height=800px width=auto style="background-color: #000000"/><br>
+Circuit Breaker:
+This is a Mark II of the project, 
+first version was a lot less impressive, 
+and way less serviceable.
+
+Current functionality includes:
+- An inbuilt amplifier, with a loopback for effects
+- Proper tone stack, with high and low cut filers
+- 6 single string pickups(1x6 pickup)
+- Controlled by 1x6, 2 synths(bass/octave down)
+- Active mixer
+
+For more info, visit an <a href="https://mirajspalace.space/circuitbreaker/index.htm">interactive page</a>
+
+I hope one day to make a Mark III, that will include
+all 6 synths, an octave shifter for them,
+and better a 1x6, with stronger output
+for better tracking in the lower ranges.
+</pre></div><br>`
     }
 };
 

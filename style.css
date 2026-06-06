@@ -63,13 +63,12 @@ body {
 }
 
 a {
-    text-decoration: none;
-    color: #007F7F;
-    transition: .3s;
+    color: #00FFFF;
+	
 }
 
 a:hover {
-    color: #00FF00;
+    color: #007F7F;
 }
 
 @media (max-width: 767px) {

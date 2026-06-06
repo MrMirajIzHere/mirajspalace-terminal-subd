@@ -1,0 +1,13 @@
+sketch
+blockbench
+blender
+- select model
+- camera
+- wireframes
+- render viewport
+paint net
+- remove background
+- b/w
+- contrast
+- median blur
+- scale 400x400

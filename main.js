@@ -200,7 +200,7 @@ For more info, visit an <a href="https://mirajspalace.space/circuitbreaker/index
 
 I hope one day to make a Mark III, that will include
 all 6 synths, an octave shifter for them,
-and better a 1x6, with stronger output
+and a better 1x6, with a stronger output
 for better tracking in the lower ranges.
 </pre></div><br>`
     }

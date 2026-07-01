@@ -63,7 +63,7 @@ async function displayProgressCheck(container, checkName, result, statusColor = 
     
     return new Promise(async (resolve) => {
         const lineDiv = document.createElement('div');
-        lineDiv.style.fontFamily = 'IBM';
+        lineDiv.style.fontFamily = 'IBM_EGA';
         lineDiv.style.fontSize = '28px';
         lineDiv.style.color = '#C0C0C0';
         container.appendChild(lineDiv);
@@ -236,7 +236,7 @@ async function displayRAMCounter(container, blankIndex, blankLineElements, repla
         targetElement = blankLineElements[blankIndex];
     } else {
         targetElement = document.createElement('div');
-        targetElement.style.fontFamily = 'IBM';
+        targetElement.style.fontFamily = 'IBM_EGA';
         targetElement.style.fontSize = '28px';
         targetElement.style.color = '#C0C0C0';
         container.appendChild(targetElement);
@@ -272,7 +272,7 @@ async function executeBootSequence() {
     clearForLoading();
     
     const container = document.createElement('div');
-    container.style.fontFamily = 'IBM';
+    container.style.fontFamily = 'IBM_EGA';
     container.style.fontSize = '28px';
     const content = document.querySelector('.content');
     if (content) content.appendChild(container);
@@ -294,7 +294,7 @@ async function executeBootSequence() {
     clearScreen();
     
     const biosContainer = document.createElement('div');
-    biosContainer.style.fontFamily = 'IBM';
+    biosContainer.style.fontFamily = 'IBM_EGA';
     biosContainer.style.fontSize = '28px';
     if (content) content.appendChild(biosContainer);
     
@@ -317,7 +317,7 @@ async function executeBootSequence() {
         if (sequenceAborted) break;
         const blankDiv = document.createElement('div');
         blankDiv.innerHTML = '<br>';
-        blankDiv.style.fontFamily = 'IBM';
+        blankDiv.style.fontFamily = 'IBM_EGA';
         blankDiv.style.fontSize = '28px';
         blankDiv.style.color = '#C0C0C0';
         blankDiv.className = 'dynamic-blank';
@@ -416,7 +416,7 @@ async function executeBootSequence() {
     clearScreen();
     
     const finalContainer = document.createElement('div');
-    finalContainer.style.fontFamily = 'IBM';
+    finalContainer.style.fontFamily = 'IBM_EGA';
     finalContainer.style.fontSize = '28px';
     if (content) content.appendChild(finalContainer);
     

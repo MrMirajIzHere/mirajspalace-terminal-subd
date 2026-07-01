@@ -1,4 +1,4 @@
-const DIRECTORY_CONTENT = `<pre style="font-size: 28px; font-family: IBM">
+const DIRECTORY_CONTENT = `<pre style="font-size: 28px; font-family: IBM_EGA">
 <span style="color: #FF0000">NOT A REAL TIME DIRECTORY
 snapshot of 2/jun/2026
 (AKA probably outdated)</span>

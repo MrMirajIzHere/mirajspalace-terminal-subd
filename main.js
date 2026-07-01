@@ -155,7 +155,7 @@ Mainframe interface // [Version: v17.1.0012]</span><br><br><br>`,
 };
 
 const STYLES = {
-    default: 'font-size: 28px; font-family: IBM',
+    default: 'font-size: 28px; font-family: IBM_EGA',
     error: 'color: #FF0000',
     success: 'color: #00FF00',
     warning: 'color: #FF0000',
@@ -401,7 +401,7 @@ function addArtOutput(artName) {
 }
 
 function showHelp() {
-    let helpText = '<div style="font-size: 28px; font-family: IBM">';
+    let helpText = '<div style="font-size: 28px; font-family: IBM_EGA">';
     
     helpText += '<span style="color: #FFFF00">Available commands:</span><br>';
     
@@ -452,7 +452,7 @@ function showColorPalette() {
 }
 
 function showStations() {
-    let stationsList = '<div style="font-family: IBM; font-size: 28px; color: #7F7F00">';
+    let stationsList = '<div style="font-family: IBM_EGA; font-size: 28px; color: #7F7F00">';
     stationsList += '<span style="color: #FFFF00">Available stations:</span><br><br>';
     
     for (const [code, name] of Object.entries(GREEK_LETTERS)) {
@@ -471,7 +471,7 @@ function showStations() {
 }
 
 function showSymbolMap() {
-    let symbolList = '<div style="font-family: IBM; font-size: 28px; color: #7F7F00">';
+    let symbolList = '<div style="font-family: IBM_EGA; font-size: 28px; color: #7F7F00">';
     symbolList += '<span style="color: #FFFF00">Symbol Map:</span><br><br>';
 
     const sortedEntries = Object.entries(SYMBOL_MAP).sort((a, b) => a[0].localeCompare(b[0]));
@@ -488,7 +488,7 @@ function showSymbolMap() {
 }
 
 function listProjects() {
-    let projectsList = '<div style="font-family: IBM; font-size: 28px; color: #7F7F00">';
+    let projectsList = '<div style="font-family: IBM_EGA; font-size: 28px; color: #7F7F00">';
     projectsList += '<span style="color: #FFFF00">Available Projects:</span><br>';
     
     for (const [project] of Object.entries(PROJECTS)) {
@@ -503,7 +503,7 @@ function listProjects() {
 function showProject(projectKey) {
     const project = PROJECTS[projectKey];
     if (project) {
-        addOutput(`<div style="font-family: IBM; font-size: 28px;">${project.description}</div>`);
+        addOutput(`<div style="font-family: IBM_EGA; font-size: 28px;">${project.description}</div>`);
     } else {
         addOutput(`Project "${projectKey}" not found.`, 'error');
     }
@@ -667,7 +667,7 @@ function executeCheck(args) {
     }
     
     let output = `
-<div style="font-family: IBM; font-size: 28px;">
+<div style="font-family: IBM_EGA; font-size: 28px;">
     <hr style="border-color: #7F7F00;">
     <div style="color: #FFFF00;">RECORD ${formattedId} FOUND</div>
     <hr style="border-color: #7F7F00;">
